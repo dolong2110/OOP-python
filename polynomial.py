@@ -8,6 +8,7 @@ from typing import List, Union
 class Polynomial:
 
     def __init__(self, coefficients: List[Union[int, float]]):
+
         self.coefficients = coefficients
         self.len = len(self.coefficients)
 
@@ -34,6 +35,9 @@ class Polynomial:
 
     def __repr__(self):
         return str(self)
+
+    def __neg__(self):
+        return Polynomial([-coefficient for coefficient in self.coefficients])
 
     def __call__(self, value: Union[int, float]) -> Union[int, float]:
         return self.val(value)
@@ -62,7 +66,7 @@ class Polynomial:
         #
         # return float(res)
 
-        # Horner's method - Time Complexity: O(logN)
+        # Horner's rule - Time Complexity: O(logN)
         res = 0
         for i in range(self.len):
             res = res * value + self.coefficients[i]
@@ -174,3 +178,4 @@ if __name__ == '__main__':
     p3 = Polynomial([3, 2, -1])
     print(p3.roots())
     print((p1 * p1).roots())
+    print(-p1)
