@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# folders, files in project
 .idea
