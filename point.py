@@ -27,6 +27,17 @@ class Point2D(Point):
     def __repr__(self):
         return f"Point({self.x_coordinate}, {self.y_coordinate})"
 
+    def __abs__(self, metric: str) -> [int, float]:
+        """Returns the distance between this point and the origin."""
+        return self.get_distance(self.__class__(0, 0), metric)
+
+    def __add__(self, point):
+        return self.__class__(self.x_coordinate + point.x_coordinate,
+                              self.y_coordinate + point.y_coordinate)
+
+    def __sub__(self, point):
+        return self.__class__(self.x_coordinate - point.x_coordinate,
+                              self.y_coordinate - point.y_coordinate)
 
     def get_distance(self, point, metric: str) -> [int, float]:
         if metric == 'L1':
