@@ -2,6 +2,8 @@ from abc import (
     ABC,
     abstractmethod
 )
+from ctypes import Union
+
 
 class Point(ABC):
 
@@ -9,7 +11,7 @@ class Point(ABC):
         self.dimension = dimension
 
     @abstractmethod
-    def get_distance(self, point, metric: str) -> [int, float]:
+    def get_distance(self, point, metric: str) -> Union[int, float]:
         pass
 
     @abstractmethod
@@ -19,7 +21,7 @@ class Point(ABC):
 
 class Point2D(Point):
 
-    def __init__(self, x_coordinate: [int, float], y_coordinate: [int, float]):
+    def __init__(self, x_coordinate: Union[int, float], y_coordinate: Union[int, float]):
         super().__init__(2)
         self.x_coordinate = x_coordinate
         self.y_coordinate = y_coordinate
@@ -39,7 +41,7 @@ class Point2D(Point):
         return self.__class__(self.x_coordinate - point.x_coordinate,
                               self.y_coordinate - point.y_coordinate)
 
-    def get_distance(self, point, metric: str) -> [int, float]:
+    def get_distance(self, point, metric: str) -> Union[int, float]:
         if metric == 'L1':
             return abs(self.x_coordinate - point.x_coordinate) + \
                    abs(self.y_coordinate - point.y_coordinate)

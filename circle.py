@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import math
+from ctypes import Union
+
 import numpy as np
 
 from point import Point2D
@@ -78,7 +80,7 @@ class Circle:
         return "Two circle are not having any common to each other"
 
     @staticmethod
-    def get_circle_from_three_points(point1: Point2D, point2: Point2D, point3: Point2D) -> (Point2D, [int, float]):
+    def get_circle_from_three_points(point1: Point2D, point2: Point2D, point3: Point2D) -> (Point2D, Union[int, float]):
         """
         function to convert 3 points into a Circle instance
         circle equation: x^2 + y^2 - 2ax - 2by - c = 0
@@ -99,7 +101,7 @@ class Circle:
                        Circle.reduce_number_form(result[1][0])),  Circle.reduce_number_form(result[2][0])
 
     @staticmethod
-    def reduce_number_form(num: [int, float]) -> [int, float]:
+    def reduce_number_form(num: Union[int, float]) -> Union[int, float]:
         if isinstance(num, int):
             return num
 
