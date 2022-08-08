@@ -41,19 +41,51 @@ class Point2D(Point):
         return self.__class__(self.x_coordinate - point.x_coordinate,
                               self.y_coordinate - point.y_coordinate)
 
-    def get_distance(self, point, metric: str) -> Union[int, float]:
+    def get_distance(self, point, metric: str, p: int = 1) -> Union[int, float]:
+        """
+        Return the distance with another point depends on the metric
+        p here is used to calculate Minkowski distance
+        """
+
+        # Manhattan distance
         if metric == 'L1':
             return abs(self.x_coordinate - point.x_coordinate) + \
                    abs(self.y_coordinate - point.y_coordinate)
 
+        # Euclidean distance
         if metric == 'L2':
             return ((self.x_coordinate - point.x_coordinate) ** 2 +
                     (self.y_coordinate - point.y_coordinate) ** 2) ** 0.5
+
+        # Canberra distance
+        if metric == 'L3':
+            return abs(self.x_coordinate - point.x_coordinate) / (abs(self.x_coordinate) + abs(point.x_coordinate)) + \
+                   abs(self.y_coordinate - point.y_coordinate) / (abs(self.y_coordinate) + abs(point.y_coordinate))
+
+        # Hamming distance
+        if metric == 'L4':
+            return (abs(self.x_coordinate - point.x_coordinate) + abs(self.y_coordinate - point.y_coordinate)) / 2
+
+        # Minkowski distance
+        if metric == 'L5':
+            return ((abs(self.x_coordinate - point.x_coordinate) ** p +
+                    abs(self.y_coordinate - point.y_coordinate)) ** p) ** (1 / p)
 
         return 0
 
     def get_symmetrical_point(self):
         return self.__class__(-self.x_coordinate, -self.y_coordinate)
+
+    def dot(self, point: Point2D) -> Union[int, float]:
+        """Return dot product of self with another Point"""
+
+        return self.x_coordinate * point.x_coordinate + self.y_coordinate * point.y_coordinate
+
+    def equal(self, point: Point2D) -> bool:
+        """Returns whether the coordinates of self and other agree"""
+
+        return (self.x_coordinate == point.x_coordinate) and (self.y_coordinate == point.y_coordinate)
+
 
 
 # class Point3D(Point):
