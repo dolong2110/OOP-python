@@ -32,17 +32,20 @@ class Point2D(Point):
     def __repr__(self):
         return f"Point({self.x_coordinate}, {self.y_coordinate})"
 
-    def __abs__(self, metric: str) -> [int, float]:
+    def __abs__(self, metric: str) -> Union[int, float]:
         """Returns the distance between this point and the origin."""
         return self.get_distance(self.__class__(0, 0), metric)
 
-    def __add__(self, point):
+    def __add__(self, point: Point2D) -> Point2D:
         return self.__class__(self.x_coordinate + point.x_coordinate,
                               self.y_coordinate + point.y_coordinate)
 
-    def __sub__(self, point):
+    def __sub__(self, point: Point2D) -> Point2D:
         return self.__class__(self.x_coordinate - point.x_coordinate,
                               self.y_coordinate - point.y_coordinate)
+
+    def __mul__(self, multiplier: Union[int, float]) -> Point2D:
+        return self.__class__(self.x_coordinate * multiplier, self.y_coordinate * multiplier)
 
     def get_distance(self, point, metric: str, p: int = 1) -> Union[int, float]:
         """
@@ -79,6 +82,12 @@ class Point2D(Point):
     def get_symmetrical_point(self):
         return self.__class__(-self.x_coordinate, -self.y_coordinate)
 
+    def get_slope_from_origin(self) -> float:
+        if self.x_coordinate == 0:
+            return 0.0
+
+        return self.y_coordinate / self.x_coordinate
+
     def dot(self, point: Point2D) -> Union[int, float]:
         """Return dot product of self with another Point"""
 
@@ -88,7 +97,6 @@ class Point2D(Point):
         """Returns whether the coordinates of self and other agree"""
 
         return (self.x_coordinate == point.x_coordinate) and (self.y_coordinate == point.y_coordinate)
-
 
 
 # class Point3D(Point):

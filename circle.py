@@ -52,7 +52,7 @@ class Circle:
         return round(2 * math.pi * self.radius, 6)
 
     def get_area(self) -> float:
-        return round(math.pi * self.radius ** 2)
+        return round(math.pi * self.radius ** 2, 6)
 
     def get_point_relation(self, point: Point2D) -> str:
         distance = point.get_distance(self.center, "L2")
