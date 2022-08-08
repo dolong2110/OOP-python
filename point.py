@@ -2,7 +2,7 @@ from abc import (
     ABC,
     abstractmethod
 )
-from ctypes import Union
+from typing import Union
 
 
 class Point(ABC):
