@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-
 from abc import (
     ABC,
     abstractmethod
 )
 from typing import Union
+
+from line import Line2D
 
 
 class Point(ABC):
@@ -75,7 +76,7 @@ class Point2D(Point):
         # Minkowski distance
         if metric == 'L5':
             return ((abs(self.x_coordinate - point.x_coordinate) ** p +
-                    abs(self.y_coordinate - point.y_coordinate)) ** p) ** (1 / p)
+                     abs(self.y_coordinate - point.y_coordinate)) ** p) ** (1 / p)
 
         return 0
 
@@ -97,6 +98,11 @@ class Point2D(Point):
         """Returns whether the coordinates of self and other agree"""
 
         return (self.x_coordinate == point.x_coordinate) and (self.y_coordinate == point.y_coordinate)
+
+    def get_distance_from_line(self, line: Line2D) -> float:
+        return abs(line.a * self.x_coordinate + line.b * self.y_coordinate + line.c) / \
+               (line.a ** 2 + line.b ** 2) ** 0.05
+
 
 
 # class Point3D(Point):

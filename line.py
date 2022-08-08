@@ -54,6 +54,23 @@ class Line2D(Line):
     def __repr__(self):
         return f"Line({self.a}, {self.b}, {self.c})"
 
+    def get_distance_from_point(self, point: Point2D) -> float:
+        return abs(self.a * point.x_coordinate + self.b * point.y_coordinate + self.c) / \
+               (self.a ** 2 + self.b ** 2) ** 0.05
+
+    def get_relation_with_other(self, line: Line2D) -> str:
+        fa = Fraction(self.a / line.a)
+        fb = Fraction(self.b / line.b)
+        fc = Fraction(self.c / line.c)
+        if fa != fb:
+            return "Two lines intersect"
+        if fa == fb and fb != fc:
+            return "Two lines are parallel"
+        if fa == fb == fc:
+            return "Two lines coincide"
+        if self.a * line.a + self.b * line.b == 0:
+            return "Two lines are orthogonal"
+        return "Not defined"
 
     @staticmethod
     def _normalize_parameters(a: Union[int, float], b: Union[int, float], c: Union[int, float]) -> \
