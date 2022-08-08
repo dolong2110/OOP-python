@@ -15,6 +15,13 @@ class Line(ABC):
     def __init__(self, dimension: int):
         self.dimension = dimension
 
+    @abstractmethod
+    def get_distance_from_point(self, *args) -> float:
+        pass
+
+    @abstractmethod
+    def get_relation_with_other(self, *args) -> str:
+        pass
 
 class Line2D(Line):
     """a line in a 2D plane have the formula: ax + by + c = 0"""
