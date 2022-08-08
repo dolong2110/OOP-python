@@ -6,8 +6,6 @@ from abc import (
 )
 from typing import Union
 
-from line import Line2D
-
 
 class Point(ABC):
 
@@ -98,10 +96,6 @@ class Point2D(Point):
         """Returns whether the coordinates of self and other agree"""
 
         return (self.x_coordinate == point.x_coordinate) and (self.y_coordinate == point.y_coordinate)
-
-    def get_distance_from_line(self, line: Line2D) -> float:
-        return abs(line.a * self.x_coordinate + line.b * self.y_coordinate + line.c) / \
-               (line.a ** 2 + line.b ** 2) ** 0.05
 
 
 
