@@ -117,7 +117,7 @@ class Circle:
 #     c3 = Circle(Point2D(0, 0), Point2D(1, 1), Point2D(1, 0))
 #     c4 = Circle(Point2D(0, 0), -1)
 #     c5 = Circle(Point2D(1, 2), Point2D(5, 3), Point2D(-1, 2))
-#
+# #
 #     print(c1)
 #     print(c2)
 #     print(c3)
