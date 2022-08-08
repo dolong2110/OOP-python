@@ -14,6 +14,7 @@ class Polynomial:
 
     def __str__(self):
         """Converts a Polynomial into a string"""
+
         order = self.len - 1
         represent = []
         for coe in self.coefficients:
@@ -115,6 +116,7 @@ class Polynomial:
 
     def mul(self, other: Union[int, float, Polynomial]) -> Polynomial:
         """returns a new Polynomial representing the product of Polynomials self and other"""
+
         if isinstance(other, (int, float)):
             return Polynomial(self._mul_constant(self.coefficients, other))
 
@@ -136,6 +138,7 @@ class Polynomial:
 
     def roots(self) -> Union[List[Union[float, complex]], str]:
         """Returns a list containing the root or roots of first or second order polynomials"""
+
         if self.len == 2:
             return [-self.coefficients[1] / self.coefficients[0]]
         if self.len == 3:
