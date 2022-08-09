@@ -81,9 +81,7 @@ class Polynomial:
         small_coefficients = copy.deepcopy(self.coefficients)
 
         if self.len > len(other.coefficients):
-            large_coefficients = copy.deepcopy(self.coefficients)
-            small_coefficients = copy.deepcopy(other.coefficients)
-
+            large_coefficients, small_coefficients = small_coefficients, large_coefficients
 
         i, j = len(large_coefficients) - 1, len(small_coefficients) - 1
         while j >= 0:
